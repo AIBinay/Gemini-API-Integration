@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Generate Search</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Generated Search Results</h1>
+      </header>
+      <main>
+        <h2>Job Description</h2>
+        <div id="jobDescriptionContainer"></div>
+      </main>
+    </div>
+    <script>
+      window.addEventListener("load", async function () {
+        const jobDescription = localStorage.getItem("jobDescription");
+        if (jobDescription) {
+          const prompt = `generate a JSON object where key is "blog" and value is a 1000 words single line string about a blog on ${jobDescription} dont create paragraphs just generate a single line string no new lines`;
+
+          try {
+            const response = await fetch("http://localhost:3000/generate", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ prompt }),
+            });
+
+            const responseData = await response.json();
+            console.log(responseData);
+            const rawText = responseData.text;
+            console.log(rawText);
+            const jsonStart = rawText.indexOf("{");
+            const jsonEnd = rawText.lastIndexOf("}") + 1;
+            const jsonText = rawText.slice(jsonStart, jsonEnd);
+            const cleanText = jsonText.replace(/\n/g, "\\n");
+            const finaltext = cleanText.replace(/\\n"blog"/g, '"blog"');
+            const Finaltext = finaltext.replace(/\\n}/g, "}");
+            console.log("final text:", Finaltext);
+            const lastText = Finaltext.replace(/\*/g, "").replace(/#/g, "");
+            console.log("last text:", lastText);
+            const jsonData = JSON.parse(lastText);
+            console.log("Parsed JSON data:", jsonData);
+            setData(jsonData);
+          } catch (error) {
+            console.error("Failed to generate content:", error);
+          }
+
+          localStorage.removeItem("jobDescription"); // Clear the item if no longer needed
+        }
+
+        function setData(data) {
+          const container = document.getElementById("jobDescriptionContainer");
+          container.innerHTML = `<div>${data.blog}</div>`;
+        }
+      });
+    </script>
+  </body>
+</html>

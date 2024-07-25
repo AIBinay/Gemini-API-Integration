@@ -1,0 +1,140 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+}
+.Botsearch-input-box {
+  width: 500px;
+  height: 200px;
+}
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 636px; /* Set the container width */
+  margin: 0 auto; /* Center the container horizontally */
+  padding: 20px;
+  background-color: #f0f0f0; /* Light gray background for container */
+}
+
+header {
+  text-align: center;
+}
+
+h1 {
+  font-size: 2em;
+  margin-bottom: 5px;
+}
+
+p {
+  font-size: 1em;
+  color: #888;
+}
+
+main {
+  background-color: #fff; /* White background for main content */
+  padding: 20px;
+}
+
+h2 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+label {
+  font-size: 0.8em;
+  color: #888;
+}
+
+input[type="text"] {
+  padding: 5px;
+  border: 1px solid #ccc;
+  width: 600px;
+  height: 96px;
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.8; /* Slightly transparent on hover */
+}
+
+button[type="reset"] {
+  background-color: white;
+}
+
+button[type="submit"] {
+  background-color: #4caf50; /* Green background for generate search button */
+  color: white;
+}
+
+.btn {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.keyword-container {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  border: 1px solid black;
+}
+
+#keyword-input {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  flex-grow: 1;
+  margin-right: 10px;
+  border: 0;
+  outline: 0;
+}
+
+#keyword-input:active {
+  outline: 0;
+}
+
+#keyword-list {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.keyword-item {
+  display: flex;
+  align-items: center;
+  background-color: #eee;
+  padding: 5px 10px;
+  margin-bottom: 5px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.keyword-item span {
+  flex-grow: 1;
+}
+
+.keyword-item .remove-btn {
+  margin-left: 10px;
+  color: red;
+  font-weight: bold;
+  font-size: 16px;
+}
